@@ -5,6 +5,7 @@
 from pathlib import Path
 import subprocess
 import sys
+import shlex
 
 
 def main():
@@ -21,6 +22,7 @@ def main():
     ])
 
     if args:
+        args = [shlex.quote(a) for a in args]
         print('*' * 20, 'running', ' '.join(args), '...')
         p = subprocess.run([
             'ssh',
